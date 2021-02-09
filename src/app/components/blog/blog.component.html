@@ -1,0 +1,109 @@
+<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+    <h1 class="h2">Blog</h1>
+    <form #blogForm="ngForm" (ngSubmit)="add()">
+        <div class="mb-3" hidden>
+            <label for="id" class="form-label">ID</label>
+            <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name="id" 
+            [(ngModel)]="blog.id" #bId="ngModel">
+          </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" 
+          [(ngModel)]="blog.name" #bName="ngModel" required>
+          <div [hidden]="bName.valid || bName.untouched" class="alert alert-danger">
+            Name is required
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input type="text" class="form-control" id="date" name="date" [(ngModel)]="blog.date" #bDate="ngModel" required>
+          <div [hidden]="bDate.valid || bDate.untouched" class="alert alert-danger">
+            Date is required
+        </div>
+        </div>
+       
+        <div class="mb-3">
+            <label for="authorimage" class="form-label">Author Image</label>
+            <input type="text" class="form-control" id="authorimage" name="authorimage" [(ngModel)]="blog.authorimage" #bAuthorImage="ngModel" required>
+            <div [hidden]="bAuthorImage.valid || bAuthorImage.untouched" class="alert alert-danger">
+                Author Image is required
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="like" class="form-label">Like</label>
+            <input type="number" class="form-control" id="like" min="0" name="like" [(ngModel)]="blog.like" #bLike="ngModel" required>
+            <div [hidden]="bLike.valid || bLike.untouched" class="alert alert-danger">
+               Like is required
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <input type="number" class="form-control" id="comment" min="0" name="comment" [(ngModel)]="blog.comment" #bComment="ngModel" required>
+            <div [hidden]="bComment.valid || bComment.untouched" class="alert alert-danger">
+                Comment is required
+             </div>
+          </div>
+          <div class="mb-3">
+            <label for="text" class="form-label">Text</label>
+            <input type="text" class="form-control" id="text" name="text" [(ngModel)]="blog.text" #bText="ngModel" required>
+            <div [hidden]="bText.valid || bText.untouched" class="alert alert-danger">
+                Text is required
+             </div>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="text" class="form-control" id="image" name="image" [(ngModel)]="blog.image" #bImage="ngModel" required>
+            <div [hidden]="bImage.valid || bImage.untouched" class="alert alert-danger">
+                Image is required
+             </div>
+          </div>
+        <button type="submit" class="btn btn-primary" [disabled]="blogForm.invalid">Add</button>
+      </form>
+      <div class="mt-5">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Author Image</th>
+                <th scope="col">Like</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Text</th>
+                <th scope="col">Image</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let blog of blogs">
+                    <td>{{blog.name}}</td>
+                    <td>{{blog.date}}</td>
+                    <td>
+                        <img src="{{blog.authorimage}}"  width="50" height="50"/>
+                    </td>
+                    <td>{{blog.like}}</td>
+                    <td>{{blog.comment}}</td>
+                    <td>{{blog.text}}</td>
+                    <td>
+                        <img src="{{blog.image}}" width="50" height="50"/>
+                        
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" (click)="update(blog.id, blog.name, blog.date, blog.like, blog.comment, blog.authorimage, blog.text, blog.image)">Edit</a>
+                        
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" (click)="delete(blog.id)">Delete</a>
+                    </td>
+                   
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+    <footer class="pt-5 d-flex justify-content-between">
+      <span>Made by Hazem Allam ❤️</span>
+     
+    </footer>
+</main>

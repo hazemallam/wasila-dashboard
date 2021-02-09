@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "dashboardWasila"
+  "defaultProject": "dashboardWasila",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,78 @@
+<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+    <h1 class="h2">courses</h1>
+    <form #courseForm="ngForm" (ngSubmit)="add()">
+        <div class="mb-3" hidden>
+            <label for="id" class="form-label">ID</label>
+            <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name="id" 
+            [(ngModel)]="course.id" #cId="ngModel">
+          </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="text" class="form-control" id="image" aria-describedby="emailHelp" name="image" 
+          [(ngModel)]="course.image" #cImage="ngModel" required>
+          <div [hidden]="cImage.valid || cImage.untouched" class="alert alert-danger">
+            Image is required
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="text1" class="form-label">Text1</label>
+          <input type="text" class="form-control" id="text1" name="text1" [(ngModel)]="course.text1" #cText1="ngModel" required>
+          <div [hidden]="cText1.valid || cText1.untouched" class="alert alert-danger">
+            Text is required
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="text2" class="form-label">Text2</label>
+            <input type="text" class="form-control" id="text2" name="text2" [(ngModel)]="course.text2" #cText2="ngModel" required>
+            <div [hidden]="cText2.valid || cText2.untouched" class="alert alert-danger">
+              Text is required
+          </div>
+          </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="text" class="form-control" id="time" name="time" [(ngModel)]="course.time" #vTime="ngModel" required>
+            <div [hidden]="vTime.valid || vTime.untouched" class="alert alert-danger">
+              Time is required
+          </div>
+          </div>
+        <button type="submit" class="btn btn-primary" [disabled]="courseForm.invalid">Add</button>
+      </form>
+      <div class="mt-5">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                
+                <th scope="col">Image</th>
+                <th scope="col">Text1</th>
+                <th scope="col">Text2</th>
+                <th scope="col">Time</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let course of courses">
+                    <td>
+                        <img src="{{course.image}}" width="50" height="50"/>
+                    </td>
+                    <td>{{course.text1}}</td>
+                    <td>{{course.text2}}</td>
+                    <td>{{course.time}}</td>
+                    <td>
+                        <a class="btn btn-primary" (click)="update(course.id, course.image, course.text1, course.text2, course.time)">Edit</a>
+                        
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" (click)="delete(course.id)">Delete</a>
+                    </td>
+                   
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+    <footer class="pt-5 d-flex justify-content-between">
+      <span>Made by Hazem Allam ❤️</span>
+     
+    </footer>
+</main>

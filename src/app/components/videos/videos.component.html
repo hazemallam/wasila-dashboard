@@ -1,0 +1,69 @@
+<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+    <h1 class="h2">Videos</h1>
+    <form #videoForm="ngForm" (ngSubmit)="add()">
+        <div class="mb-3" hidden>
+            <label for="id" class="form-label">ID</label>
+            <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name="id" 
+            [(ngModel)]="video.id" #vId="ngModel">
+          </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" aria-describedby="emailHelp" name="title" 
+          [(ngModel)]="video.title" #vTitle="ngModel" required>
+          <div [hidden]="vTitle.valid || vTitle.untouched" class="alert alert-danger">
+            Title is required
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="minutes" class="form-label">Alumni</label>
+          <input type="number" class="form-control" id="minutes" name="minutes" [(ngModel)]="video.minutes" #vMinutes="ngModel" required>
+          <div [hidden]="vMinutes.valid || vMinutes.untouched" class="alert alert-danger">
+            Minutes is required
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Alumni</label>
+            <input type="text" class="form-control" id="image" name="image" [(ngModel)]="video.image" #vImage="ngModel" required>
+            <div [hidden]="vImage.valid || vImage.untouched" class="alert alert-danger">
+              Image is required
+          </div>
+          </div>
+        <button type="submit" class="btn btn-primary" [disabled]="videoForm.invalid">Add</button>
+      </form>
+      <div class="mt-5">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                
+                <th scope="col">Title</th>
+                <th scope="col">Minutes</th>
+                <th scope="col">Image</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let video of videos">
+                    <td>{{video.title}}</td>
+                    <td>{{video.minutes}}</td>
+                    <td>
+                        <img src="{{video.image}}" width="50" height="50"/>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" (click)="update(video.id, video.title, video.minutes, video.image)">Edit</a>
+                        
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" (click)="delete(video.id)">Delete</a>
+                    </td>
+                   
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+    <footer class="pt-5 d-flex justify-content-between">
+      <span>Made by Hazem Allam ❤️</span>
+     
+    </footer>
+</main>

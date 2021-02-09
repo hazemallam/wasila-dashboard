@@ -1,0 +1,60 @@
+<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+    <h1 class="h2">Alumni</h1>
+    <form #alumniForm="ngForm" (ngSubmit)="add()">
+        <div class="mb-3" hidden>
+            <label for="id" class="form-label">ID</label>
+            <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name="id" 
+            [(ngModel)]="alumni.id" #aId="ngModel">
+          </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" 
+          [(ngModel)]="alumni.name" #aName="ngModel" required>
+          <div [hidden]="aName.valid || aName.untouched" class="alert alert-danger">
+            Name is required
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="alumni" class="form-label">Alumni</label>
+          <input type="text" class="form-control" id="alumni" name="alumni" [(ngModel)]="alumni.alumni" #aAlumni="ngModel" required>
+          <div [hidden]="aAlumni.valid || aAlumni.untouched" class="alert alert-danger">
+            Alumni is required
+        </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="alumniForm.invalid">Add</button>
+      </form>
+      <div class="mt-5">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">Alumni</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let alumni of alumnis">
+                    <td>{{alumni.name}}</td>
+                    <td>
+                        <img src="{{alumni.alumni}}" width="50" height="50"/>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" (click)="update(alumni.id, alumni.name, alumni.alumni)">Edit</a>
+                        
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" (click)="delete(alumni.id)" >Delete</a>
+                    </td>
+                   
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+    <footer class="pt-5 d-flex justify-content-between">
+      <span>Made by Hazem Allam ❤️</span>
+     
+    </footer>
+</main>
