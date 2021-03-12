@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
   }
   logout(){
     this.loginService.logout()
-    // window.location.reload()
-    this.router.navigate(['/'])
+    window.open("http://localhost:5000/","_self")
+    // this.router.navigate(['/'])
   }
 
 }

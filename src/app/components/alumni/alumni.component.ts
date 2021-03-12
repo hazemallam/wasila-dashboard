@@ -27,8 +27,8 @@ export class AlumniComponent implements OnInit {
       this.alumniService.postAlumni(this.alumni).subscribe((response)=>{
         console.log('success')
         this.alumni = {id:0, name:'', alumni:''};
-        this.router.navigate(['/']);
-
+        // this.router.navigate(['/']);
+        window.location.reload()
       },
       (err)=>{
         console.log(err)
@@ -38,7 +38,8 @@ export class AlumniComponent implements OnInit {
       this.alumniService.updateAlumni(this.alumni).subscribe((response)=>{
         console.log('updated successfully')
         this.alumni = {id:0, name:'', alumni:''};
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        window.location.reload()
       }, (err)=>{
         console.log(err)
       })
@@ -54,7 +55,8 @@ export class AlumniComponent implements OnInit {
     let sure = confirm('Are you sure ?')
     if(sure){
       this.alumniService.deleteAlumni(id).subscribe((response)=>{
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        window.location.reload()
         console.log('deleted successfully')
       }, (err)=>{
         console.log(err)

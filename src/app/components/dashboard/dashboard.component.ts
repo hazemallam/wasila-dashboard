@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Icart } from 'src/app/models/icart';
 import { LoginServiceService } from 'src/app/services/login/login-service.service';
+import { OrderServiceService } from 'src/app/services/order/order-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,13 +10,16 @@ import { LoginServiceService } from 'src/app/services/login/login-service.servic
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-
-  constructor(private loginService: LoginServiceService, private router: Router) { }
+  orders:Icart[] = []
+  constructor(private loginService: LoginServiceService, private router: Router, private orderService: OrderServiceService) { }
   ngOnDestroy(): void {
 
   }
 
   ngOnInit(): void {
+    this.orderService.getOrders().subscribe((response)=>{
+      this.orders = response
+    })
     //   new Chartist.Line('#traffic-chart', {
     //     labels: ['January', 'Februrary', 'March', 'April', 'May', 'June'],
     //     series: [
@@ -24,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //   low: 0,
     //   showArea: true
     // });
+
     setTimeout(() => {
       this.loginService.logout()
       this.router.navigate(['/'])

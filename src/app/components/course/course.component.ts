@@ -30,8 +30,9 @@ export class CourseComponent implements OnInit {
       this.courseService.postCourse(this.course).subscribe((response)=>{
         console.log('success')
         this.course = {id:0, image:'', text1:'', text2:'', time:''};
-        this.router.navigate(['/']);
-
+        // this.router.navigate(['/course']);
+        // window.open("http://localhost:5000/course", "_self")
+        window.location.reload()
       },
       (err)=>{
         console.log(err)
@@ -41,7 +42,10 @@ export class CourseComponent implements OnInit {
       this.courseService.updateCourse(this.course).subscribe((response)=>{
         console.log('updated successfully')
         this.course = {id:0, image:'', text1:'', text2:'', time:''};
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        // this.router.navigate(['/course']);
+        // window.open("http://localhost:5000/course", "_self")
+        window.location.reload()
       }, (err)=>{
         console.log(err)
       })
@@ -55,7 +59,10 @@ export class CourseComponent implements OnInit {
     let sure = confirm('Are you sure ?')
     if(sure){
       this.courseService.deleteCourse(id).subscribe((response)=>{
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        // window.open("http://localhost:5000/course", "_self")
+        // this.router.navigate(['/course']);
+        window.location.reload()
         console.log('deleted successfully')
       }, (err)=>{
         console.log(err)

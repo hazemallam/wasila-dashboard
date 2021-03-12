@@ -30,7 +30,8 @@ export class VideosComponent implements OnInit {
       this.videoService.postVideo(this.video).subscribe((response)=>{
         console.log('success')
         this.video = {id:0, title:'', minutes:0, image:''};
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        window.location.reload()
 
       },
       (err)=>{
@@ -41,7 +42,8 @@ export class VideosComponent implements OnInit {
       this.videoService.updateVideo(this.video).subscribe((response)=>{
         console.log('updated successfully')
         this.video = {id:0, title:'', minutes:0, image:''};
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        window.location.reload()
       }, (err)=>{
         console.log(err)
       })
@@ -55,7 +57,8 @@ export class VideosComponent implements OnInit {
     let sure = confirm('Are you sure ?')
     if(sure){
       this.videoService.deleteVideo(id).subscribe((response)=>{
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        window.location.reload()
         console.log('deleted successfully')
       }, (err)=>{
         console.log(err)
