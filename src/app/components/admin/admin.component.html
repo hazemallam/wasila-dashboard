@@ -1,0 +1,70 @@
+
+<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+    <h1 class="h2">Admins</h1>
+    <form #adminForm="ngForm" (ngSubmit)="add()">
+        <div class="mb-3" hidden>
+            <label for="id" class="form-label">ID</label>
+            <input type="number" class="form-control" id="id" aria-describedby="emailHelp" name="id" 
+            [(ngModel)]="admin.id" #cId="ngModel">
+          </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" 
+          [(ngModel)]="admin.name" #cImage="ngModel" required>
+          <div [hidden]="cImage.valid || cImage.untouched" class="alert alert-danger">
+            Name is required
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="userName" class="form-label">UserNAME</label>
+          <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="admin.userName" #cText1="ngModel" required>
+          <div [hidden]="cText1.valid || cText1.untouched" class="alert alert-danger">
+            UserName is required
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="admin.password" #cText2="ngModel" required>
+            <div [hidden]="cText2.valid || cText2.untouched" class="alert alert-danger">
+              Text is required
+          </div>
+          </div>
+        <button type="submit" class="btn btn-primary" [disabled]="adminForm.invalid">Add</button>
+      </form>
+      <div class="mt-5">
+        <table class="table table-dark">
+            <thead>
+              <tr >
+                
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Password</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let admin of admins">
+                    <td>{{admin.id}}</td>
+                    <td>{{admin.name}}</td>
+                    <td>{{admin.userName}}</td>
+                    <td>{{admin.password}}</td>
+                    <td>
+                        <a class="btn btn-primary" (click)="update(admin.id, admin.name, admin.userName, admin.password)">Edit</a>
+                        
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" (click)="delete(admin.id)">Delete</a>
+                    </td>
+                   
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+    <footer class="pt-5 d-flex justify-content-between">
+      <span>Made by Hazem Allam ❤️</span>
+     
+    </footer>
+</main>

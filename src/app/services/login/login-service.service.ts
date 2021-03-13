@@ -26,6 +26,9 @@ export class LoginServiceService {
       
       // this.router.navigate([])
     }
+    else{
+      alert('you must get your credintials')
+    }
      }
       , (err)=>{
       console.log(err)

@@ -13,6 +13,8 @@ import { AlumniComponent } from './components/alumni/alumni.component';
 import { VideosComponent } from './components/videos/videos.component';
 import { CourseComponent } from './components/course/course.component';
 import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './components/users/users.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { LoginComponent } from './components/login/login.component';
     AlumniComponent,
     VideosComponent,
     CourseComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
