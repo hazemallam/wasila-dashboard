@@ -22,4 +22,7 @@ export class AdminServiceService {
   deleteAdmin(id:Number):Observable<IAdmin>{
     return this.http.delete<IAdmin>(`${environment.baseUrl}/admins/${id}`);
   }
+  getAdmin(userName:string):Observable<IAdmin[]>{
+    return this.http.get<IAdmin[]>(`${environment.baseUrl}/admins/?userName=${userName}`)
+  }
 }

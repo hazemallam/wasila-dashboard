@@ -19,28 +19,48 @@ export class AdminComponent implements OnInit {
   }
   add(){
     if(this.admin.id === 0){
-      this.adminService.postAdmin(this.admin).subscribe((response)=>{
-        console.log('success')
-        this.admin = {id:0, name:'', userName:'', password:''};
-        // this.router.navigate(['/course']);
-        // window.open("http://localhost:5000/course", "_self")
-        window.location.reload()
-      },
-      (err)=>{
-        console.log(err)
+      this.adminService.getAdmin(this.admin.userName).subscribe((response)=>{
+        if(response.length == 0){
+          this.adminService.postAdmin(this.admin).subscribe((response)=>{
+            console.log('success')
+            this.admin = {id:0, name:'', userName:'', password:''};
+            // this.router.navigate(['/course']);
+            // window.open("http://localhost:5000/course", "_self")
+            window.location.reload()
+          },
+          (err)=>{
+            console.log(err)
+          })
+        }
+        else{
+          alert('already exist, try to add another user name')
+          this.admin = {id:0, name:'', userName:'', password:''};
+        }
+      }, (error)=>{
+        console.log(error)
       })
+      
     }
     else{
-      this.adminService.updateAdmin(this.admin).subscribe((response)=>{
-        console.log('updated successfully')
-        this.admin = {id:0, name:'', userName:'', password:''};
-        // this.router.navigate(['/']);
-        // this.router.navigate(['/course']);
-        // window.open("http://localhost:5000/course", "_self")
-        window.location.reload()
-      }, (err)=>{
-        console.log(err)
-      })
+      this.adminService.getAdmin(this.admin.userName).subscribe((response)=>{
+        if(response.length == 0){
+          this.adminService.updateAdmin(this.admin).subscribe((response)=>{
+            console.log('updated successfully')
+            this.admin = {id:0, name:'', userName:'', password:''};
+            // this.router.navigate(['/']);
+            // this.router.navigate(['/course']);
+            // window.open("http://localhost:5000/course", "_self")
+            window.location.reload()
+          }, (err)=>{
+            console.log(err)
+          })
+        }
+        else{
+          alert('already exist, try to add another user name')
+          this.admin = {id:0, name:'', userName:'', password:''};
+        }
+      }, (error)=>{})
+     
     }
    
   }
