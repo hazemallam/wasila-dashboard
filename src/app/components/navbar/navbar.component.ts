@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   }
   logout(){
     this.loginService.logout()
-    window.open("https://wasila-db.herokuapp.com/","_self")
+    window.open("https://wasila-dashboard.herokuapp.com/","_self")
     // this.router.navigate(['/'])
   }
 
